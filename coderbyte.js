@@ -326,3 +326,54 @@ function ThirdGreatest(strArr){
 	strArr.sort(function(a, b) {return b.length - a.length;});
 	return strArr[2];
 }
+
+function PrimeTime(num) {
+	var uplimit = Math.ceil(Math.sqrt(num));
+	var is_prime = true;
+	if (num === 2){
+		return is_prime;
+	}
+	for (var i = 2; i <= uplimit; i++){
+		if (num % i === 0){
+			is_prime = false;
+			break;
+		}
+	}
+	return is_prime;
+         
+}
+
+function PrimeMover(num) {
+	var IsPrime = function(num) {
+		var uplimit = Math.ceil(Math.sqrt(num));
+		var is_prime = true;
+		if (num === 2){
+			return is_prime;
+		}
+		for (var i = 2; i <= uplimit; i++){
+			if (num % i === 0){
+				is_prime = false;
+				break;
+			}
+		}
+	return is_prime;
+    }
+    var count = 0;
+    var i = 2;
+    while (count != num){
+    	if (IsPrime(i)){
+    		count ++;
+    	}
+    	i++;
+    }
+    return i-1;
+}
+
+function PalindromeTwo(str){
+	var new_str = str.replace(/[^a-z]/gi, '').toLowerCase();
+	var rev_string = '';
+	for (var i = new_str.length-1; i >= 0; i--){
+		rev_string += new_str[i].toLowerCase();
+	}
+	return new_str === rev_string;
+}
