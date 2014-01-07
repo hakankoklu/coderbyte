@@ -377,3 +377,121 @@ function PalindromeTwo(str){
 	}
 	return new_str === rev_string;
 }
+
+function StringScramble(str1,str2) {
+	var result = true;
+	for (var i = 0; i < str2.length; i++){
+		if (str1.indexOf(str2[i]) === -1){
+			result = false;
+			break;
+		}
+	}
+	return result;
+}
+
+function BinaryConverter(str){
+	result = 0;
+	for (var i = str.length -1; i >= 0; i--){
+		result += str[i] * Math.pow(2,str.length - 1 - i)
+	}
+	return result;
+}
+
+function FirstReverse(str) {
+	var newStr = '';
+	for (var i = str.length - 1; i>=0; i--){
+		newStr = newStr + str[i]
+	}
+	return newStr
+}
+
+function FirstFactorial(number) {
+	var result = 1;
+	if (number != 0){
+		for(var i = 1; i<=number; i++){
+			result = result * i;
+		}
+	}
+	return result
+}
+
+function LongestWord(string) {
+	var wordArray = string.split(' ');
+	var longest_word = '';
+	for (var i = 0; i< wordArray.length; i++){
+		wordArray[i] = wordArray[i].replace(/[^\w\s]|_/g, "");
+		if (longest_word.length < wordArray[i].length){
+			longest_word = wordArray[i];
+		}
+	}
+	return longest_word
+}
+
+function LetterChanges(str){
+	var str_array = str.split('');
+	var alphabet = 'abcdefghijklmnopqrstuvwxyza';
+	var vowels = 'aeiou';
+	var cap_vowels = 'AEIOU';
+	for (var i = 0; i<str_array.length; i++){
+		index_letter = alphabet.indexOf(str_array[i].toLowerCase());
+		if (index_letter != -1){
+			str_array[i] = alphabet[index_letter + 1];
+		}
+		if (vowels.indexOf(str_array[i]) != -1){
+			str_array[i] = str_array[i].toUpperCase();
+		}
+	}
+	return str_array.join('');
+}
+
+function SimpleAdding(num){
+	var result = 0;
+	for (var i = 1; i <= num; i++){
+		result += i;
+	}
+	return result;
+}
+
+function LetterCapitalize(str){
+	var str_words = str.split(' ');
+	for (var i = 0; i<str_words.length; i++){
+		str_words[i] = str_words[i].charAt(0).toUpperCase() + str_words[i].slice(1);
+	
+	}
+	return str_words.join(' ');
+}
+
+function ArrayAdditionI(arr){
+	arr.sort(function(a, b) {return a - b;});
+	var max = arr.pop();
+	var rest_comb = CombinationOfNumbers(arr);
+	var result = false;
+	for (var i = 0; i < rest_comb.length; i++){
+		var temp_total = rest_comb[i].reduce(function(a, b) {return a + b;});
+		if (temp_total === max){
+			result = true;
+			break;
+		}
+	}
+	return result;
+}
+
+function CombinationOfNumbers(arr){
+	var result = [];
+	if (arr.length > 1){
+		var imm = CombinationOfNumbers(arr.slice(1));
+		var imm_n_first = [];
+		result.push([arr[0]]);
+		for (var i = 0; i < imm.length; i++){
+			var temp = [];
+			temp = imm[i].concat([arr[0]]);
+			imm_n_first.push(temp);
+		}
+		result = result.concat(imm_n_first);
+		result = result.concat(imm);
+		return result;
+	}
+	if (arr.length === 1){
+		return [arr];
+	}
+}
